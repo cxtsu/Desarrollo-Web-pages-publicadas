@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Studio Ghibli | Film Collection</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/imgs/pink totoro.jpg" />
+
+    <!-- Bootstrap 5 CSS CDN -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+
+    <!-- Google Fonts: Cinzel, Plus Jakarta Sans y Noto Serif JP -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Noto+Serif+JP:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Estilos personalizados -->
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+  <body class="ghibli-theme">
+
+    <!-- HEADER / HERO PRINCIPAL DESTACADO -->
+    <header id="featured-hero" class="hero-showcase position-relative text-white">
+      <div id="hero-backdrop" class="hero-backdrop"></div>
+      <div class="hero-overlay"></div>
+
+      <div class="container position-relative py-5 content-wrap">
+        <div class="row align-items-center g-4">
+          <!-- Columna Izquierda: Información de la película -->
+          <div class="col-lg-8">
+            <span id="hero-japanese" class="japanese-title d-block mb-1">千と千尋の神隠し</span>
+            <h1 id="hero-title" class="cinema-title display-3 fw-bold text-uppercase mb-2">
+              Spirited Away
+            </h1>
+            <p id="hero-meta" class="meta-strip small text-uppercase mb-4">
+              2001 &bull; 124 MIN &bull; DIR. HAYAO MIYAZAKI &bull; STUDIO GHIBLI
+            </p>
+
+            <div class="d-flex flex-wrap gap-4 align-items-start mb-4">
+              <!-- Miniatura del póster oficial con borde fino -->
+              <figure class="hero-mini-poster m-0">
+                <img id="hero-poster" src="" alt="Póster oficial" class="img-fluid" />
+                <figcaption id="hero-kanji-sub" class="text-center mt-2"></figcaption>
+              </figure>
+
+              <!-- Detalles y descripción -->
+              <div class="hero-details flex-grow-1">
+                <p class="mb-1"><strong class="text-pastel-accent">Director:</strong> <span id="hero-director">Hayao Miyazaki</span></p>
+                <p class="mb-2"><strong class="text-pastel-accent">Productor:</strong> <span id="hero-producer">Toshio Suzuki</span></p>
+                <p id="hero-desc" class="hero-description">
+                  Cargando información destacada...
+                </p>
+
+
+                <div class="d-flex flex-wrap gap-2 mt-3">
+                  <span class="badge rounded-pill tag-badge">Animation</span>
+                  <span class="badge rounded-pill tag-badge">Fantasy</span>
+                  <span class="badge rounded-pill tag-badge">Japanese Classic</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          
+          <!-- Columna Derecha: Indicador de puntuación circular -->
+          <div class="col-lg-4 text-center d-flex flex-column align-items-center justify-content-center">
+            <div class="score-circle">
+              <span id="hero-score" class="score-number">97</span>
+              <span class="score-sub">RT SCORE</span>
+            </div>
+            <span class="score-label mt-2 text-uppercase text-light-50 small">Studio Ghibli Archive</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- NAVEGACIÓN Y FILTROS -->
+    <nav class="gallery-nav py-4" aria-label="Filtro de la galería">
+      <div class="container">
+        <div class="text-center mb-3">
+          <h2 class="gallery-heading text-uppercase letter-spacing-2 m-0">Gallery</h2>
+          <div class="heading-line mx-auto"></div>
+        </div>
+
+        <div class="row g-3 justify-content-center">
+          <div class="col-12 col-md-5 col-lg-4">
+            <input
+              type="text"
+              id="search-input"
+              class="form-control ghibli-input rounded-pill"
+              placeholder="Buscar por título o año..."
+              aria-label="Buscar película"
+              autocomplete="off"
+            />
+          </div>
+
+          <div class="col-12 col-md-4 col-lg-3">
+            <select
+              id="director-filter"
+              class="form-select ghibli-input rounded-pill"
+              aria-label="Filtrar por director"
+            >
+              <option value="todos">Todos los Directores</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Conteo de resultados -->
+        <div class="text-center mt-3">
+          <span id="results-count" class="badge rounded-pill counter-pill px-3 py-2">
+            Cargando obras...
+          </span>
+        </div>
+      </div>
+    </nav>
+
+    <!-- SECCIÓN NUEVA: CARRUSEL HORIZONTAL DE PÓSTERS VERTICALES -->
+    <section class="carousel-showcase-section py-4" aria-label="Carrusel de Pósters Destacados">
+      <div class="container position-relative">
+        <div class="carousel-wrapper position-relative">
+          <!-- Botón Scroll Izquierdo -->
+          <button id="btn-scroll-left" class="carousel-arrow arrow-left" aria-label="Desplazar a la izquierda">
+            &#10094;
+          </button>
+
+          <!-- Tira deslizable de pósters generada por JS -->
+          <div id="posters-track" class="posters-track">
+            <!-- Inyectado dinámicamente -->
+          </div>
+
+          <!-- Botón Scroll Derecho -->
+          <button id="btn-scroll-right" class="carousel-arrow arrow-right" aria-label="Desplazar a la derecha">
+            &#10095;
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTENIDO PRINCIPAL / MOSAICO DE LA GALERÍA -->
+    <main class="gallery-section py-4">
+      <div class="container">
+        <!-- Spinner de carga -->
+        <section id="loading-spinner" class="text-center py-5">
+          <div class="spinner-border text-secondary" role="status" style="width: 3rem; height: 3rem;">
+            <span class="visually-hidden">Cargando catálogo...</span>
+          </div>
+          <p class="mt-3 text-muted">Obteniendo obras de Studio Ghibli...</p>
+        </section>
+
+        <!-- Mensaje de error si falla la API -->
+        <div id="error-message" class="alert alert-danger d-none text-center shadow-sm" role="alert">
+          <strong>Error de conexión:</strong> No fue posible cargar la colección desde la API.
+        </div>
+
+        <h3 class="h5 text-muted fw-semibold mb-3">Fotogramas de Películas</h3>
+
+        <!-- Grilla de fotogramas widescreen (Mosaico 16:9) -->
+        <section
+          id="films-container"
+          class="row g-3 row-cols-1 row-cols-sm-2 row-cols-md-3"
+          aria-live="polite"
+        ></section>
+      </div>
+
+      <!-- Cita inferior del director más popular :) -->
+      <aside class="quote-section container text-center my-5 py-4">
+        <blockquote class="cinematic-quote mb-0">
+          "The imagination is the most valuable power we possess."
+        </blockquote>
+        <figcaption class="text-muted small mt-2">— Hayao Miyazaki  (宮崎 駿 )</figcaption>
+      </aside>
+    </main>
+
+    <!-- FOOTER SEMÁNTICO -->
+    <footer class="ghibli-footer py-4 text-center">
+      <div class="container">
+        <p class="mb-1">Studio Ghibli Film Database &bull; by cxtsu</p>
+        <small class="text-muted">
+          Datos consumidos en tiempo real vía <a href="https://ghibliapi.dev/films" target="_blank" rel="noopener noreferrer">Ghibli API</a>
+        </small>
+      </div>
+    </footer>
+
+    <!-- Bootstrap 5 Bundle JS -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- Script de lógica -->
+    <script src="assets/js/script.js"></script>
+  </body>
+</html>
